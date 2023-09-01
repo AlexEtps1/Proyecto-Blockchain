@@ -1,0 +1,14 @@
+.div-nav-bar{
+    display: flex;
+    text-align: center;
+    height: 5rem;
+}
+
+.div-prueba{
+    display: flex;
+    align-items: center;    
+}
+
+.card-body-border{
+    border: 2px inset purple;
+}

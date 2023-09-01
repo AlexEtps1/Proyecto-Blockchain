@@ -1,0 +1,36 @@
+/* body{
+    background-color: black;
+}
+
+.section-principal{
+margin: 0% 10%;
+background: rgb(0,0,0);
+background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(73,26,101,1) 50%, rgba(0,0,0,1) 100%);
+} */
+
+.contenido-ui{
+    display: flex;
+    justify-content:end;
+    margin: 1% 1%;
+}
+
+    
+.divCardPadre{
+    display: flex;
+    justify-content: space-evenly;    
+    gap: 5rem;
+    flex-wrap: wrap;
+}
+    
+.verMas-comprar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 5% 0% 0% 0%;
+}
+
+.div-pagination{
+    display: flex;
+    justify-content: center;
+    margin: 2% 0%;
+}
