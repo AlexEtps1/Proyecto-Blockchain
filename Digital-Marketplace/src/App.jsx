@@ -1,24 +1,23 @@
 import {NextUIProvider} from "@nextui-org/react";
-import SideNavbarMenu from "./componentes/SideNavbarMenu";
-import Slider from "./componentes/Slider";
-import Body from "./componentes/Cuerpo";
-import Pie from "./componentes/pie";
-import Web3 from 'web3';
-import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
-import smartContractRegistro from "./smartContract/registro.json";
-import { useState, useEffect } from "react";
+import NavbarMenu from "./componentes/NavbarMenu";
+import Pie from "./componentes/Pie";
+import ModalDetalleProducto from "./componentes/ModalDetalleProducto";
+import { Route, Routes, Link } from "react-router-dom";
+
 
 
 function App() {
     //----------------------------------------------------------------------------
     return (
-    <NextUIProvider>
-      <SideNavbarMenu/>
-      <Slider/>
-      <Body/>
-      <Pie/>
-    </NextUIProvider>
+    
+      <NextUIProvider>
+        <Routes>
+          <Route path='/' element={<NavbarMenu />} />
+        </Routes>
+        <ModalDetalleProducto><Link to = '/'></Link></ModalDetalleProducto>
+        <Pie><Link to = '/'></Link></Pie>
+      </NextUIProvider>
+    
   )
 }
 
