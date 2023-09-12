@@ -18,6 +18,10 @@ function NavbarMenu() {
   const [verificacionWallet, setVerificacionWallet] = useState(false); //verificacion si tenemos una wallet en el navegador
   // Manejar el estado de conexion de la wallet (reemplazo de ButtonWallet)
   const [isWalletConnected, setIsWalletConnected] = useState(null);
+
+  // Declaramos un nuevo estado llamado 'connecting' que nos ayudará a saber si el proceso de conexión a la billetera está en curso.
+  // Inicialmente, este estado es 'false', lo que significa que no hay ninguna conexión en curso.
+  const [connecting, setConnecting] = useState(false);
   // -------------------------------------------
   const MySwal = withReactContent(Swal);
   //Funcion para conectar wallet
@@ -25,6 +29,9 @@ function NavbarMenu() {
     if (typeof window.ethereum !== 'undefined') { // Verificamos si tenemos metamask
       const web3Instance = new Web3(window.ethereum); //guardamos el obj de eth
       setWeb3(web3Instance);
+      // Antes de iniciar el proceso de conexión, establecemos 'connecting' en 'true'.
+      // Esto significa que el proceso de conexión a la billetera ha comenzado.
+      setConnecting(true);
       try {
         await window.ethereum.enable(); //Solicitamos el acceso a la wallet
         // Obtener la dirección de la cuenta actual
@@ -63,6 +70,9 @@ function NavbarMenu() {
             text: 'Conectado'
           });
         }
+      }
+      finally {
+        setConnecting(false); // Establece connecting en false al final, tanto si la conexión fue exitosa como si hubo un error
       };
     } else {
       setVerificacionWallet(false);
@@ -131,7 +141,25 @@ function NavbarMenu() {
     // entonces se reconecta automaticamente al refrescar la pagina.
     if (walletConnectedTime && Date.now() - walletConnectedTime < 1 * 60 * 60 * 1000) {
       // Conectar la wallet
-      conectarWallet();
+      if (typeof window.ethereum !== 'undefined') {
+        const web3Instance = new Web3(window.ethereum);
+        setWeb3(web3Instance);
+        window.ethereum.enable().then(async () => {
+          const accounts = await web3Instance.eth.getAccounts();
+          setAccount(accounts[0]);
+          const balanceWei = await web3Instance.eth.getBalance(accounts[0]);
+          const balanceEth = web3Instance.utils.fromWei(balanceWei, 'ether');
+          setBalance(balanceEth);
+          setIsWalletConnected(true);
+          const contractInstance = new web3Instance.eth.Contract(
+            smartContractRegistro,
+            smartContractRegistro && "0x34D44DBc2c73B0eCb4bC738bfB850f92AaB89ae2"
+          );
+          setContract(contractInstance);
+        });
+      } else {
+        setVerificacionWallet(false);
+      }
     }
   }, []);
   // ------------------------------- FIN NUEVO CODIGO AGREGADO ------------------------------- //
@@ -153,10 +181,10 @@ function NavbarMenu() {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-              <button type="button" class="btn btn-outline-primary nav__item" href="/registro"><Link to="registro">Entrar</Link></button>
+              <button type="button" class="btn btn-outline-primary nav__item"><a href="http://127.0.0.1:5173/inicioSesion"><Link to="registro">Entrar</Link></a></button>
               </li>
               <li className="nav__item">
-              <button type="button" class="btn btn-outline-success nav__item">Registrarse</button>
+              <button type="button" class="btn btn-outline-success nav__item"><a href="http://127.0.0.1:5173/registro"><Link to="registro">Registrarse</Link></a></button>
               </li>
               <li className="nav__item"> {/*Saldo wallet*/}
                 <a className="nav__link"><Saldo account={account} balance={balance} contract={contract} /></a>
@@ -176,17 +204,31 @@ function NavbarMenu() {
                 /></a>
               </li>
               <li className="nav__item"> {/*Boton conexion wallet*/}
-                <a className="nav__link">{verificacionWallet ? ( 
-                <>{/* conexion wallet */}{/* // Modificación al botón para que muestre "Desconectar Wallet" cuando la wallet está conectada */}
-                {isWalletConnected ? (
-                    <Button onClick={desconectarWallet} as={Link} color="warning" href="#" variant="flat">Desconectar</Button>
-                  ):(
-                    <Button onClick={conectarWallet} as={Link} color="warning" href="#" variant="flat">Conectar</Button>
-                  )}
-                </>
-              ) : (
-                <h1>¡Importante! Para comenzar en esta plataforma, es esencial que crees una billetera (wallet) antes de proceder. La billetera te permitirá gestionar y asegurar tus activos de manera segura. No olvides configurar una billetera antes de continuar para asegurarte de que todas tus transacciones estén protegidas. ¡Empieza tu viaje hacia un mundo de posibilidades asegurando tus activos con una billetera adecuada!</h1>
-              )}
+
+              <a className="nav__link">{verificacionWallet ? (
+                  <>{/* conexion wallet */}{/* // Modificación al botón para que muestre "Desconectar Wallet" cuando la wallet está conectada */}
+                    {isWalletConnected ? (
+                      <Button onClick={desconectarWallet} as={Link} color="warning" href="#" variant="flat">Desconectar Wallet</Button>
+                    ) : (
+                      <Button
+                        onClick={(event) => {
+                          // Si el estado 'connecting' es 'false' y el estado 'isWalletConnected' es 'false',
+                          // entonces llamamos a la función 'conectarWallet'.
+                          // Si el estado 'connecting' es 'true' o el estado 'isWalletConnected' es 'true',
+                          // entonces prevenimos la acción por defecto del evento (navegar al enlace), es decir, el botón se comporta como si estuviera deshabilitado mientras nos estamos conectando a la wallet
+                          if (!connecting && !isWalletConnected) {
+                            conectarWallet();
+                          } else {
+                            event.preventDefault();
+                          }
+                        }}
+                        as={Link} color="warning" href="#" variant="flat">Conectar</Button>
+                    )}
+                  </>
+                ) : (
+                  <h1>¡Importante! Para comenzar en esta plataforma, es esencial que crees una billetera (wallet) antes de proceder. La billetera te permitirá gestionar y asegurar tus activos de manera segura. No olvides configurar una billetera antes de continuar para asegurarte de que todas tus transacciones estén protegidas. ¡Empieza tu viaje hacia un mundo de posibilidades asegurando tus activos con una billetera adecuada!</h1>
+                )}
+                
                 </a>
               </li>
             </ul>

@@ -5,6 +5,8 @@ import FormularioRegistro from "./componentes/registro/FormuRegistro";
 import DashboardInicio from "./dashboards/DashboardInicio";
 import DashboardRegistro from "./dashboards/DashboardRegistro";
 
+
+
 function App() {
     //----------------------------------------------------------------------------
     return (

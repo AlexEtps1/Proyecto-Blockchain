@@ -2,7 +2,7 @@ import React from "react";
 import {Input} from "@nextui-org/react";
 import { EyeFilledIcon } from "../inicioSesion/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "../inicioSesion/EyeSlashFilledIcon";
-import {Button} from "@nextui-org/react";
+import {Button, Link} from "@nextui-org/react";
 
 export default function FormularioRegistro() {
 
@@ -60,6 +60,10 @@ export default function FormularioRegistro() {
     <Button color="primary">
       Enviar
     </Button>
+
+    
+    <button type="button" class="btn btn-outline-success nav__item"><a href="http://127.0.0.1:5173/"><Link to="registro">Regresar</Link></a></button>
+    
 
 
    </>

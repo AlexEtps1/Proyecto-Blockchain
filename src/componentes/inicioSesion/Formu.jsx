@@ -2,6 +2,7 @@ import React from "react";
 import {Input} from "@nextui-org/react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
+import { Link } from "react-router-dom";
 
 export default function Formulario() {
 
@@ -38,6 +39,13 @@ export default function Formulario() {
       type={isVisible ? "text" : "password"}
       className="max-w-xs"
     />
+
+<Button color="primary">
+      Entrar
+    </Button>
+
+    
+    <button type="button" class="btn btn-outline-success nav__item"><a href="http://127.0.0.1:5173/"><Link to="registro">Regresar</Link></a></button>
    </>
   );
 }
