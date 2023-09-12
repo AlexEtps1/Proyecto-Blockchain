@@ -3,8 +3,9 @@ body{
                 linear-gradient(127deg, white, rgba(0,255,0,0) 70.71%),
                 linear-gradient(336deg, #9353d3, rgba(0,0,255,0) 70.71%);
 	background-size: 400% 400%;
-	position: relative;
+	/* position: relative; */
 	animation: cambiar 5s ease-in-out infinite;
+    
 } 
 
 @keyframes cambiar{

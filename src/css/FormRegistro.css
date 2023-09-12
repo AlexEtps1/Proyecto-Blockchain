@@ -1,0 +1,32 @@
+.formRegistro{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px 100px;
+    background-color: #dd99fa ;
+    border-radius: 5%;
+    box-shadow: 0px 0px 12px 5px rgba(0,0,0,0.65);
+    -webkit-box-shadow: 0px 0px 12px 5px rgba(0,0,0,0.65);
+    -moz-box-shadow: 0px 0px 12px 5px rgba(0,0,0,0.65);
+}
+
+.divIcono{
+    padding: 15%;
+}
+
+.divInput{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.divBotones{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 15% 0%;
+
+}

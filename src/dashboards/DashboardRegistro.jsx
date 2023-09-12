@@ -1,16 +1,11 @@
 import React from 'react';
-import Formulario from '../componentes/inicioSesion/Formu';
-
-
+import FormularioRegistro from '../componentes/registro/FormuRegistro';
 function DashboardRegistro() {
     return (
-      <div>
-        <Formulario />
-        
-       
+      <>
+        <FormularioRegistro/>
         {/* Otros componentes que desees mostrar en esta ruta */}
-      </div>
+      </>
     );
   }
-  
   export default DashboardRegistro;
