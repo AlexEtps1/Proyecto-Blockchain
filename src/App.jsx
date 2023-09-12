@@ -16,10 +16,7 @@ function App() {
           <Route path='/' element={<DashboardInicio />} />
           <Route path='/inicioSesion' element={<Formulario/>} />
           <Route path='/registro' element={<FormularioRegistro/>} />
-          
         </Routes>
-        
-        
       </NextUIProvider>
     
   )

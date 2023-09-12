@@ -26,7 +26,6 @@ body {
 
 .container {
   max-width: 1500px;
-  
 }
 
 .main {
@@ -161,7 +160,7 @@ body {
   .nav {
     height: calc(var(--header-height) + 1.5rem);
   }
-  .nav__toggle, .nav__close {
+  .nav__toggle, .nav__close { /*Ocultamos botones de responsive*/
     display: none;
   }
   .nav__list {

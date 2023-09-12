@@ -1,6 +1,5 @@
 import {Divider} from "@nextui-org/react";
 import Logo from "../img/logo.png";
-import { Link } from 'react-router-dom';
 
 function Pie() {
   return (
