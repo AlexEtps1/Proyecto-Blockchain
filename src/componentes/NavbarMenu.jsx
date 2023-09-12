@@ -181,7 +181,7 @@ function NavbarMenu() {
           <div className="nav__menu" id="nav-menu">
             <ul className="nav__list">
               <li className="nav__item">
-              <button type="button" class="btn btn-outline-primary nav__item"><a href="http://127.0.0.1:5173/inicioSesion"><Link to="registro">Entrar</Link></a></button>
+              <button type="button" class="btn btn-outline-primary nav__item"><a href="http://localhost:5173/inicio"><Link to="registro">Entrar</Link></a></button>
               </li>
               <li className="nav__item">
               <button type="button" class="btn btn-outline-success nav__item"><a href="http://localhost:5173/registro"><Link to="registro">Registrarse</Link></a></button>

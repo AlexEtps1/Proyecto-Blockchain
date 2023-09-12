@@ -1,10 +1,8 @@
 import {NextUIProvider} from "@nextui-org/react";
-import { Route, Routes, Link } from "react-router-dom";
-import Formulario from "./componentes/inicioSesion/Formu";
+import { Route, Routes} from "react-router-dom";
+import FormularioInicio from "./componentes/inicio/FormuInicio";
 import FormularioRegistro from "./componentes/registro/FormuRegistro";
-import DashboardInicio from "./dashboards/DashboardInicio";
-import DashboardRegistro from "./dashboards/DashboardRegistro";
-
+import DashboardInicio from "./dashboards/DashboardMain";
 
 
 function App() {
@@ -14,7 +12,7 @@ function App() {
       <NextUIProvider>
         <Routes>
           <Route path='/' element={<DashboardInicio />} />
-          <Route path='/inicioSesion' element={<Formulario/>} />
+          <Route path='/inicio' element={<FormularioInicio/>} />
           <Route path='/registro' element={<FormularioRegistro/>} />
         </Routes>
       </NextUIProvider>

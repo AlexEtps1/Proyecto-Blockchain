@@ -46,34 +46,15 @@ export default function FormularioRegistro() {
           type={isVisible ? "text" : "password"}
           className="w-full"
         />
-
-        <Input
-          size = "lg"
-          label="Confirm Password"
-          variant="bordered"
-          placeholder="Enter your password"
-          isRequired = "true"
-          endContent={
-            <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
-              {isVisible ? (
-                  <EyeSlashFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                ) : (
-                  <EyeFilledIcon className="text-2xl text-default-400 pointer-events-none" />
-                )}
-              </button>
-            }
-            type={isVisible ? "text" : "password"}
-            className="w-full"
-        />
       </div>
 
       <div className="divBotones">
-        <a class="btn btn-primary" role="button" aria-disabled="true" onClick={pruebaAlert}>Registrarse</a>
+        <a class="btn btn-primary" role="button" aria-disabled="true" onClick={pruebaAlert}>Acceder</a>
         <a class="btn btn-secondary" role="button" aria-disabled="true" href="http://localhost:5173">Regresar<Link to="registro"></Link></a>
       </div>
 
       <div className="divIniciarRegistro">
-        <h1 className="H1-iniciar-registro">¿Posees una cuenta en nuestra web? <a href="http://localhost:5173/inicio" className="a-iniciar-registro">Iniciar Seccion</a></h1>
+        <h1 className="H1-iniciar-registro">¿No tiene una cuenta en nuestra web? <a href="http://localhost:5173/registro" className="a-iniciar-registro">Registrate Aqui</a></h1>
       </div>
     </form>
   );
@@ -81,5 +62,5 @@ export default function FormularioRegistro() {
 
 
 function pruebaAlert(){
-  alert("Usuario registrado")
+  alert("Entrando al sistema")
 }
